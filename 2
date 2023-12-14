@@ -1,0 +1,50 @@
+#2.
+
+num_student = 5
+num_course = 5
+
+student_names <- c("vikki","pramod","vinay","shekhar","arun")
+
+course_marks <-matrix(c(
+  85,96,85,52,56,
+  68,57,89,75,86,
+  74,85,96,35,68,
+  48,89,68,85,99,
+  78,89,98,98,99
+),nrow = num_student,byrow=TRUE)
+
+print(course_marks)
+
+student_records<-list()
+
+for(SI in 1:num_student)
+{
+  student_name<-student_names[SI]
+  
+  tatol_marks<-sum(course_marks[SI,])
+  average_marks<-tatol_marks/num_course
+  
+  grade<-ifelse(average_marks>=90,"A",
+                ifelse(average_marks>=80,"B",
+                       ifelse(average_marks>=70,"C",
+                              ifelse(average_marks>=60,"D","F"))))
+  
+  student_record<-list(name=student_name,marks=course_marks[SI,],tatol=tatol_marks,avg=average_marks,grade=grade)
+  student_records<-append(student_records,list(student_record))
+}
+
+cat("student record:\n")
+for(record in student_records){
+  cat("\n\nName : ",record$name)
+  cat("\nmarks : ",record$marks)
+  cat("\nTatol :",record$tatol)
+  cat("\naverage : ",record$avg)
+  cat("\ngrade : ",record$grade)
+}
+
+
+
+
+
+
+
