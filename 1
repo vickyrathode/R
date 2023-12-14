@@ -1,0 +1,61 @@
+ 
+ all_product<-list(
+   list(name="apple",price=0.5),
+   list(name="bannana",price=0.9),
+   list(name="milk",price=0.6),
+   list(name="choco",price=0.3)
+ )
+ 
+ cat(sprintf("name\tprice\n"))
+ cat(sprintf("===========\n"))
+ for(item in all_product)
+   cat(sprintf("%s\t%s\n",item$name,item$price))
+ 
+shopping_cart<-list()
+
+
+cart_item_to_add<-list(
+  list(name="apple",quantity=3),
+  list(name="milk",quantity=5)
+)
+ 
+for(item in cart_item_to_add){
+  product_name<-item$name
+  qnty<-item$quantity
+  
+  product<-NULL
+  for(p in all_product)
+  {
+    if(p$name == product_name){
+      product<-p
+      break
+    }
+  }
+  
+  if(!is.null(product)){
+    cart_item<-list(name=product$name,price=product$price,quantity=qnty)
+    shopping_cart<-append(shopping_cart,list(cart_item))
+    cat("item added to cart.\n")
+  }else{
+    cat("product not found.\n")
+  }
+}
+
+
+sub_total<-0
+cat("\nReceipt:\n")
+cat("=========\n")
+for(item in shopping_cart)
+{
+  item_subtotal<-item$price*item$quantity
+  cat(sprintf("%s(%d unit) - Price : %f - Subtotal: %f\n",item$name,item$quantity,item$price,item_subtotal))
+  sub_total<-sub_total+item_subtotal
+}
+
+tax_rate<-0.08
+tax_amout<-sub_total*tax_rate
+total_cost<-sub_total+tax_amout
+
+cat(sprintf("\nSubtatoal:%f\n",sub_total))
+cat(sprintf("Tax Amount : %f\n",tax_amout))
+cat(sprintf("Tatoal Cost :%f\n",total_cost))
