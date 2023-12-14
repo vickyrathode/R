@@ -1,0 +1,36 @@
+
+#3...
+
+cal_fine <- function(overdue){
+  if(overdue<=7){
+    fine<-0
+  }else if(overdue<=30)
+  {
+    fine_rate=2
+    fine<-(overdue - 7)*fine_rate
+  }else{
+    fine_cap<-50
+    fine<-fine_cap
+    
+  }
+}
+
+#overdue<-readline()
+#overdue = as.integer(overdue)
+overdue<-9
+fine_amount<-cal_fine(overdue)
+
+cat("total fine is : ",fine_amount)
+
+if(fine_amount == 0)
+{
+  cat("no fine.thank you for returning book")
+}else if(fine_amount > 50){
+  cat("fine exceeds the maximum capacity,please contact library")
+}else{
+  cat("please pay fine within specific period :")
+}
+
+
+
+
