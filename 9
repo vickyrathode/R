@@ -1,0 +1,41 @@
+#9..
+student_data <- data.frame(
+  name = c("vikki", "rathod", "rashmi", "sona"),
+  maths = c(68, 96, 65, 86),
+  attendance = c(78, 96, 94, 85)
+)
+print(student_data)
+
+library(ggplot2)
+
+scatter_plot <- ggplot(student_data, aes(x = attendance, y = maths)) +
+  geom_point(color = "blue") +
+  labs(title = "Scatter Plot of Scores vs Attendance",
+       x = "Attendance Percentage",
+       y = "Scores")
+print(scatter_plot)
+
+bar_plot <- ggplot(student_data, aes(x = reorder(name, -maths), y = maths)) +
+  geom_bar(stat = "identity", fill = "green") +
+  labs(title = "Distribution of Scores Among Students",
+       x = "Student Names",
+       y = "Scores") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+print(bar_plot)
+
+line_plot <- ggplot(student_data, aes(x = name, y = maths, group = 1)) +
+  geom_line(color = "red") +
+  labs(title = "Trend of Scores Over Time",
+       x = "Student Names",
+       y = "Scores")
+print(line_plot)
+
+histogram_plot <- ggplot(student_data, aes(x = maths)) +
+  geom_histogram(binwidth = 5, fill = "purple", color = "black") +
+  labs(title = "Distribution of Scores",
+       x = "Scores",
+       y = "Frequency")
+
+library(gridExtra)
+grid.arrange(scatter_plot, bar_plot, line_plot, histogram_plot, ncol = 2)
+#print(histogram_plot)
