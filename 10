@@ -1,0 +1,59 @@
+
+#10....
+library(dplyr)
+
+# Creating the initial data frame
+df <- data.frame(
+  EMPID = c(101, 102, 103, 104, 105),
+  Name = c("John", "peter", "bob", "Linda", "Elizabeth"),
+  Age = c(25, 30, 35, 24, 45),
+  Salary = c(50000, 60000, 45000, 70000, 55000),
+  Department = c("HR", "IT", "Finance", "Production", "QualityControl")
+)
+
+# Task 1: Filtering Data
+filtered_data <- filter(df, Age > 25)
+
+# Task 2: Selecting Specific Columns
+selected_columns <- select(df, EMPID, Name, Salary)
+
+# Task 3: Mutating Data
+mutated_data <- mutate(df, Salary_Adjusted = Salary * 1.1)
+
+# Task 4: Grouping Data
+grouped_data <- group_by(df, Department)
+
+# Task 5: Summarizing Data
+summarized_data <- summarize(grouped_data, Avg_salary = mean(Salary), Max_Age = max(Age))
+
+# Task 6: Arranging Data
+arranged_data <- arrange(df, Age, desc(Salary))
+
+# Creating a second data frame
+df2 <- data.frame(
+  EMPID = c(103, 104, 105),
+  Bonus = c(2000, 3000, 5000)
+)
+
+# Task 7: Joining Data Frames
+joined_data <- left_join(df, df2, by = "EMPID")
+
+# Printing the results
+cat("Filtered Data:\n")
+print(filtered_data)
+
+cat("\nSelected Columns:\n")
+print(selected_columns)
+
+cat("\nMutated Data:\n")
+print(mutated_data)
+
+cat("\nSummarized Data:\n")
+print(summarized_data)
+
+cat("\nArranged Data:\n")
+print(arranged_data)
+
+cat("\nJoined Data:\n")
+print(joined_data)
+
